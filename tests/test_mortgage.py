@@ -64,3 +64,32 @@ class MortgageTests(unittest.TestCase):
             Mortgage(loan_amount, rate, frequency, amortization)
         # Assert
         self.assertEqual(str(context.exception),expected)
+
+    def test_loan_amount_negative(self):
+        # Arrange
+        mortgage = Mortgage(120000, MortgageRate.FIXED_1, 
+                            MortgageFrequency.BI_WEEKLY, 25)
+        expected = "Loan Amount must be positive."
+        # Act
+        with self.assertRaises(ValueError) as context:
+            mortgage.loan_amount = -120000
+        # Assert
+        self.assertEqual(str(context.exception), expected)
+
+    def test_loan_amount_zero(self):
+        # Arrange
+        mortgage = Mortgage(120000, MortgageRate.FIXED_1, 
+                            MortgageFrequency.BI_WEEKLY, 25)
+        expected = "Loan Amount must be positive."
+        # Act
+        with self.assertRaises(ValueError) as context:
+            mortgage.loan_amount = 0
+        # Assert
+        self.assertEqual(str(context.exception), expected)
+        
+    def test_loan_amount_accessor(self):
+        # Arrange and Act
+        mortgage = Mortgage(120000, MortgageRate.FIXED_3, 
+                            MortgageFrequency.BI_WEEKLY, 25)
+        # Assert
+        self.assertEqual(mortgage.loan_amount, 120000)
