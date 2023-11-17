@@ -147,3 +147,18 @@ class MortgageTests(unittest.TestCase):
             mortgage.amortization = 69
         # Assert
         self.assertEqual(str(context.exception), expected)
+
+    def test_init_value(self):
+        # Arrange
+        loan_amount = 120000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.BI_WEEKLY
+        amortization = 25
+        # Act
+        mortgage = Mortgage(120000, MortgageRate.FIXED_1,
+                            MortgageFrequency.BI_WEEKLY, 25)
+        # Assert
+        self.assertEqual(mortgage._loan_amount, loan_amount)
+        self.assertEqual(mortgage._rate, rate)
+        self.assertEqual(mortgage._frequency, frequency)
+        self.assertEqual(mortgage._amortization, amortization)
