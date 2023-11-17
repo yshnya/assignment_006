@@ -201,3 +201,53 @@ class MortgageTests(unittest.TestCase):
         actual = mortgage.calculate_payment()
         # Assert
         self.assertAlmostEqual(expected, actual, 2)
+
+    def test_str_monthly(self):
+        # Arrange
+        amount = 200000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.MONTHLY
+        amortization = 25
+        expected = (f"Mortgage Amount: $200,000.00"
+                    +f"\nRate: 5.89%"
+                    +f"\nAmortization: 25"
+                    +f"\nFrequency: MONTHLY -- Calculated Payment: $1,275.19")
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = str(mortgage)
+        # Assert
+        self.assertEqual(expected, actual)
+
+    def test_str_bi_weekly(self):
+        # Arrange
+        amount = 200000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.BI_WEEKLY
+        amortization = 25
+        expected = (f"Mortgage Amount: $200,000.00"
+                    +f"\nRate: 5.89%"
+                    +f"\nAmortization: 25"
+                    +f"\nFrequency: BI_WEEKLY -- Calculated Payment: $588.21")
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = str(mortgage)
+        # Assert
+        self.assertEqual(expected, actual)
+
+    def test_str_weekly(self):
+        # Arrange
+        amount = 200000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.WEEKLY
+        amortization = 25
+        expected = (f"Mortgage Amount: $200,000.00"
+                    +f"\nRate: 5.89%"
+                    +f"\nAmortization: 25"
+                    +f"\nFrequency: WEEKLY -- Calculated Payment: $294.03")
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = str(mortgage)
+        # Assert
+        self.assertEqual(expected, actual)
+
+        

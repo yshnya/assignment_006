@@ -115,5 +115,15 @@ class Mortgage:
 
         return calculated_payment
     
+    def __str__(self) -> str:
+        """
+        Returns:
+            str: All the values used in the calculation.
+        """
+        return f"Mortgage Amount: ${self._loan_amount:,.2f}\n" \
+               f"Rate: {self._rate.value:.2%}\n" \
+               f"Amortization: {self._amortization}\n" \
+               f"Frequency: {self._frequency.name} -- Calculated Payment: ${self.calculate_payment():,.2f}"
+               
     
     
