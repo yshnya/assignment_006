@@ -117,13 +117,22 @@ class Mortgage:
     
     def __str__(self) -> str:
         """
+
         Returns:
             str: All the values used in the calculation.
         """
-        return f"Mortgage Amount: ${self._loan_amount:,.2f}\n" \
-               f"Rate: {self._rate.value:.2%}\n" \
-               f"Amortization: {self._amortization}\n" \
-               f"Frequency: {self._frequency.name} -- Calculated Payment: ${self.calculate_payment():,.2f}"
+        return f"Mortgage Amount: ${self.loan_amount:,.2f}\n" \
+               f"Rate: {self.rate.value:.2%}\n" \
+               f"Amortization: {self.amortization}\n" \
+               f"Frequency: {self.frequency.name} -- Calculated Payment: ${self.calculate_payment():,.2f}"
+    
+    def __repr__(self) -> str:
+        """
+        Returns the values of each valid input on its own
+        Returns:
+            str: All the values in string format on its own
+        """
+        return f"[{self.loan_amount}, {self.rate.value}, {self.amortization}, {self.frequency.value}]"
                
     
     

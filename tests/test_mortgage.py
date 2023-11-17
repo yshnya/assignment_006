@@ -250,4 +250,18 @@ class MortgageTests(unittest.TestCase):
         # Assert
         self.assertEqual(expected, actual)
 
+    def test_repr_valid(self):
+         # Arrange
+        amount = 200000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.WEEKLY
+        amortization = 25
+        expected = "[200000, 0.0589, 25, 52]"
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = repr(mortgage)
+        # Assert
+        self.assertEqual(expected, actual)
+        
+
         
