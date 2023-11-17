@@ -162,3 +162,42 @@ class MortgageTests(unittest.TestCase):
         self.assertEqual(mortgage._rate, rate)
         self.assertEqual(mortgage._frequency, frequency)
         self.assertEqual(mortgage._amortization, amortization)
+
+    def test_calculate_payment(self):
+        # Arrange
+        amount = 100000
+        rate = MortgageRate.FIXED_1
+        frequency = MortgageFrequency.MONTHLY
+        amortization = 25
+        expected = 637.59
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = mortgage.calculate_payment()
+        # Assert
+        self.assertAlmostEqual(expected, actual, 2)
+
+    def test_calculate_payment_two(self):
+        # Arrange
+        amount = 169000
+        rate = MortgageRate.FIXED_3
+        frequency = MortgageFrequency.MONTHLY
+        amortization = 30
+        expected = 990.54
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = mortgage.calculate_payment()
+        # Assert
+        self.assertAlmostEqual(expected, actual, 2)
+
+    def test_calculate_payment_three(self):
+        # Arrange
+        amount = 200000
+        rate = MortgageRate.FIXED_5
+        frequency = MortgageFrequency.BI_WEEKLY
+        amortization = 25
+        expected = 539.32
+        # Act
+        mortgage = Mortgage(amount, rate, frequency, amortization)
+        actual = mortgage.calculate_payment()
+        # Assert
+        self.assertAlmostEqual(expected, actual, 2)
