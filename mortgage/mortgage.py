@@ -47,6 +47,7 @@ class Mortgage:
         """
         return self._loan_amount
     
+    # Mutator for loan_amount
     @loan_amount.setter
     def loan_amount(self, value: float):
         if value <= 0:
@@ -61,10 +62,25 @@ class Mortgage:
         """
         return self._rate
     
+    # Mutator for rate
     @rate.setter
     def rate(self, value: MortgageRate):
         if not isinstance(value,MortgageRate):
             raise ValueError("Rate provided is invalid.")
         else:
             self._rate = value
-        
+    
+    @property
+    def frequency(self) -> MortgageFrequency:
+        """
+        accessor for the _frequency attribute
+        """
+        return self._frequency
+    
+    # Mutator for frequency
+    @frequency.setter
+    def frequency(self, value: MortgageFrequency):
+        if not isinstance(value,MortgageFrequency):
+            raise ValueError("Frequency provided is invalid.")
+        else:
+            self._frequency = value

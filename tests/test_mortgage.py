@@ -111,3 +111,21 @@ class MortgageTests(unittest.TestCase):
             mortgage.rate = 0.69
         # Assert
         self.assertEqual(str(context.exception), expected)
+
+    def test_frequency_value(self):
+        # Arrange and Act
+        mortgage = Mortgage(120000, MortgageRate.FIXED_1,
+                            MortgageFrequency.BI_WEEKLY, 25)
+        # Assert
+        self.assertEqual(mortgage.frequency, MortgageFrequency.BI_WEEKLY)
+
+    def test_frequency_error(self):
+        # Arrange
+        mortgage = Mortgage(120000, MortgageRate.FIXED_1,
+                            MortgageFrequency.BI_WEEKLY, 25)
+        expected = "Frequency provided is invalid."
+        # Act
+        with self.assertRaises(ValueError) as context:
+            mortgage.frequency = 0.69
+        # Assert
+        self.assertEqual(str(context.exception), expected)
